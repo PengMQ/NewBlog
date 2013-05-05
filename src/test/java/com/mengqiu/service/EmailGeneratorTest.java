@@ -3,7 +3,6 @@ package com.mengqiu.service;
 
 import com.mengqiu.domain.User;
 import com.mengqiu.service.Email.EmailGenerator;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,22 +22,11 @@ public class EmailGeneratorTest {
     private EmailGenerator emailGenerator;
     FreeMarkerConfigurer freeMarkerConfig;
 
-    @Before
-    public void setUp() throws Exception {
-//        emailGenerator = new EmailGenerator();
-//        freeMarkerConfig = new FreeMarkerConfigurer();
-//        freeMarkerConfig = new FreeMarkerConfigurer();
-//        Configuration configuration = new Configuration();
-//        configuration.setDirectoryForTemplateLoading(new File("/Users/twer/Documents/Java/spring/projects/blog/src/main/webapp/WEB-INF/freemarker"));
-//        freeMarkerConfig.setConfiguration(configuration);
-//        emailGenerator.setFreeMarkerConfig(freeMarkerConfig);
-    }
-
     @Test
     public void should_generate_subject_from_given_user_info() {
         User user = new User("nana");
         String emailSubject = emailGenerator.generateSubject(user);
-        assertThat(emailSubject, is("welcome nana to Blog"));
+        assertThat(emailSubject, is("Welcome nana to Blog"));
     }
 
     @Test

@@ -4,6 +4,9 @@ package com.mengqiu.service.Email;
 import com.mengqiu.domain.Email;
 import com.mengqiu.domain.User;
 import freemarker.template.TemplateException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.stereotype.Component;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -15,15 +18,21 @@ import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.util.Properties;
 
-public  class EmailSend {
-
+@Component
+public  class EmailSender {
 
     public static final String MAIL_HOST = "smtp.163.com";
     public static final String USER_NAME = "pmqnana@163.com";
     public static final String PASS_WORD = "2wsx@WSX";
 
+    private EmailGenerator emailGegerator;
 
+    @Required
+    @Autowired
+    private void setEmailGenerator(EmailGenerator emailGenerator){
+        this.emailGegerator = emailGenerator;
 
+    }
 
     public void send(Email email, User user) throws AddressException {
 
@@ -53,8 +62,8 @@ public  class EmailSend {
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(email.getFromAddress()));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getToAddress()));
-        message.setSubject(email.getEmailSubject(user), "utf-8");
-        message.setText(email.getEmailContent(user));
+        message.setSubject(emailGegerator.generateSubject(user), "utf-8");
+        message.setText(emailGegerator.generateContent(user));
         return message;
     }
 }

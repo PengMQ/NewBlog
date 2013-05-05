@@ -30,7 +30,7 @@ public class EmailGenerator {
 
     public String generateSubject(User user) {
         String userName = user.getName();
-        return "welcome " + userName + " to Blog";
+        return "Welcome " + userName + " to Blog";
 
     }
 
