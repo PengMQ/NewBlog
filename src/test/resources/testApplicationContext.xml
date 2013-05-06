@@ -24,7 +24,8 @@
         <constructor-arg index="0" value="/Users/twer/Documents/Java/spring/projects/blog/src/main/webapp/WEB-INF/freemarker"/>
     </bean>
 
-
-
+    <bean id="propertyConfigure" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:email.properties"/>
+    </bean>
 
 </beans>

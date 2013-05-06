@@ -6,6 +6,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
@@ -19,6 +20,9 @@ public class EmailGenerator {
 
     private FreeMarkerConfigurer freeMarkerConfig;
 
+    @Value("${email.subject}")
+    private String emailSubject;
+
     @Required
     @Autowired
     public void setFreeMarkerConfig(FreeMarkerConfigurer freeMarkerConfig) {
@@ -30,7 +34,7 @@ public class EmailGenerator {
 
     public String generateSubject(User user) {
         String userName = user.getName();
-        return "Welcome " + userName + " to Blog";
+        return emailSubject;
 
     }
 

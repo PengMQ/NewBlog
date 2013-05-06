@@ -15,4 +15,8 @@
     <mvc:annotation-driven/>
     <context:component-scan base-package="com.mengqiu"/>
 
+    <bean id="propertyConfigure" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:email.properties"/>
+    </bean>
+
 </beans>
