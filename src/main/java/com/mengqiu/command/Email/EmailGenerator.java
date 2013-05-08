@@ -1,4 +1,4 @@
-package com.mengqiu.service.Email;
+package com.mengqiu.command.Email;
 
 
 import com.mengqiu.domain.User;
@@ -6,7 +6,6 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
@@ -20,9 +19,6 @@ public class EmailGenerator {
 
     private FreeMarkerConfigurer freeMarkerConfig;
 
-    @Value("${email.subject}")
-    private String emailSubject;
-
     @Required
     @Autowired
     public void setFreeMarkerConfig(FreeMarkerConfigurer freeMarkerConfig) {
@@ -32,19 +28,24 @@ public class EmailGenerator {
 
 
 
-    public String generateSubject(User user) {
-        String userName = user.getName();
-        return emailSubject;
+    public String generateSubject(User user) throws IOException, TemplateException {
 
+        return generateTemplate(user, "emailTemplate/emailSubject.ftl");
     }
 
-    public String generateContent(User user) throws IOException, TemplateException {
+
+
+    private String generateTemplate(User user, String templateFile) throws IOException, TemplateException {
         String emailContent;
-        Template emailContentTemplate = freeMarkerConfig.getConfiguration().getTemplate("emailTemplate/emailTemplate.ftl");
+        Template emailContentTemplate = freeMarkerConfig.getConfiguration().getTemplate(templateFile);
         Map<String, String> map = new HashMap<String, String>();
         map.put("name", user.getName());
         emailContent = FreeMarkerTemplateUtils.processTemplateIntoString(emailContentTemplate, map);
         return emailContent;
+    }
+    public String generateContent(User user) throws IOException, TemplateException {
+
+        return  generateTemplate(user,"emailTemplate/emailTemplate.ftl");
     }
 
 

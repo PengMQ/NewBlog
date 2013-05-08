@@ -1,4 +1,4 @@
-package com.mengqiu.service.Email;
+package com.mengqiu.command.Email;
 
 
 import javax.mail.Authenticator;

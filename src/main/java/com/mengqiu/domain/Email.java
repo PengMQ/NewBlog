@@ -1,21 +1,8 @@
 package com.mengqiu.domain;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
-
 public class Email {
     private final String fromAddress;
     private final String toAddress;
-
-    private FreeMarkerConfigurer freeMarkerConfig;
-
-    @Required
-    @Autowired
-    public void setFreeMarkerConfig(FreeMarkerConfigurer freeMarkerConfig) {
-        this.freeMarkerConfig = freeMarkerConfig;
-
-    }
 
     public Email(String fromAddress, String toAddress) {
         this.fromAddress = fromAddress;
@@ -29,22 +16,4 @@ public class Email {
         return toAddress;
     }
 
-
-
-//    public String getEmailSubject(User user) {
-//        String userName = user.getName();
-//        return "Welcome " + userName + " to Blog";
-//    }
-//
-//    public String getEmailContent(User user) throws IOException, TemplateException {
-//
-//        String emailContent;
-//        Template emailContentTemplate = freeMarkerConfig.getConfiguration().getTemplate("emailTemplate/emailTemplate.ftl");
-//        Map<String, String> map = new HashMap<String, String>();
-//        map.put("name", user.getName());
-//        emailContent = FreeMarkerTemplateUtils.processTemplateIntoString(emailContentTemplate, map);
-//        return emailContent;
-//
-//
-//    }
 }

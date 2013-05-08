@@ -1,4 +1,4 @@
-package com.mengqiu.service;
+package com.mengqiu.command;
 
 import com.mengqiu.domain.Email;
 import org.junit.Before;

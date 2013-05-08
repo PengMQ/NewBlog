@@ -1,10 +1,10 @@
-package com.mengqiu.service;
+package com.mengqiu.command;
 
 
+import com.mengqiu.command.Email.EmailGenerator;
+import com.mengqiu.command.Email.EmailSender;
 import com.mengqiu.domain.Email;
 import com.mengqiu.domain.User;
-import com.mengqiu.service.Email.EmailGenerator;
-import com.mengqiu.service.Email.EmailSender;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
