@@ -15,8 +15,38 @@
     <mvc:annotation-driven/>
     <context:component-scan base-package="com.mengqiu"/>
 
+    <!--configure properties file-->
     <bean id="propertyConfigure" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:email.properties"/>
     </bean>
+
+    <!--configure database is Mysql-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql/localhost:3306/test" />
+        <property name="username" value="root"/>
+        <property name="password" value="1234"/>
+    </bean>
+
+    <!--configure transactionManager-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!--enable transaction demarcation with annotation-->
+    <!--<tx:annotation-driven />-->
+
+    <!--configure SqlSessionFactory(Mybatis)-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="typeAliasesPackage" value="com.mengqiu.domain"/>
+    </bean>
+
+    <!--configure mappers-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.mengqiu.dao"/>
+    </bean>
+
+
 
 </beans>
