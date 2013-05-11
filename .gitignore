@@ -2,3 +2,4 @@ Blog.iml
 Blog.ipr
 Blog.iws
 target/*
+.DS_Store
