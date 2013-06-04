@@ -2,9 +2,12 @@ package com.mengqiu.domain;
 
 
 public class User {
-    private String name;
     private String email;
-    private String getPassword;
+    private String name;
+    private String password;
+    private Boolean isValid;
+
+    public  User(){}
 
     public User(String name) {
         this.name = name;
@@ -17,6 +20,9 @@ public class User {
         return email;
     }
     public String getPassword(){
-        return getPassword;
+        return password;
+    }
+    public Boolean  getValidation(){
+        return isValid;
     }
 }
